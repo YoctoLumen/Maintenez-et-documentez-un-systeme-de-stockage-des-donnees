@@ -23,9 +23,8 @@ Plusieurs contraintes doivent être respecter :
     └── app/                       # Scripts Python
         ├── migrer_data.py         # Script de migration principal
         ├── verify_migration.py    # Script de vérification
-        ├── cleaning.py            # Fonctions de nettoyage des données
-        ├── check_data.py          # Vérifications supplémentaires
-        └── verif_data.py          # Validations des données
+        ├──test_migration.py       # Script de test de la migration
+        └── cleaning.py            # Fonctions de nettoyage des données
 # Prérequis
   - Docker (version 20.10+)
   - Docker Compose (version 2.0+)
