@@ -3,7 +3,6 @@ import sys
 import os
 
 def run_migration_tests():
-    """Exécuter les tests de migration"""
     
     print("🧪 LANCEMENT DES TESTS DE MIGRATION")
     print("=" * 50)
