@@ -11,19 +11,19 @@ def conversion(row):
         "patient": {
             "Name": row["Name"],
             "Gender": row["Gender"],
-            "Blood_Type": row["Blood_Type"],
+            "Blood_Type": row["Blood Type"],
             "Age": row["Age"],
-            "Medical_Condition": row["Medical_Condition"],
-            "Date_of_Admission": pd.to_datetime(row["Date_of_Admission"]),
-            "Admission_Type": row["Admission_Type"],
-            "Discharge_Date": pd.to_datetime(row["Discharge_Date"]),
-            "Room_Number": row["Room_Number"],
+            "Medical_Condition": row["Medical Condition"],
+            "Date_of_Admission": pd.to_datetime(row["Date of Admission"]),
+            "Admission_Type": row["Admission Type"],
+            "Discharge_Date": pd.to_datetime(row["Discharge Date"]),
+            "Room_Number": row["Room Number"],
             "Doctor": row["Doctor"],
             "Hospital": row["Hospital"],
-            "Billing_Amount": row["Billing_Amount"],
-            "Insurance_Provider": row["Insurance_Provider"],
+            "Billing_Amount": row["Billing Amount"],
+            "Insurance_Provider": row["Insurance Provider"],
             "Medication": row["Medication"],
-            "Test_Results": row["Test_Results"]
+            "Test_Results": row["Test Results"]
         },
         "metadata": {
             "created_at": datetime.now(),
@@ -49,8 +49,20 @@ def migrate_in_batches(collection, cleaned_df, batch_size=1000):
         for _, row in batch.iterrows():
             query = {
                 "patient.Name": row["Name"],
-                "patient.Date_of_Admission": pd.to_datetime(row["Date_of_Admission"]),
-                "patient.Doctor": row["Doctor"]
+                "patient.Gender": row["Gender"],
+                "patient.Blood_Type": row["Blood Type"],
+                "patient.Age": row["Age"],
+                "patient.Medical_Condition": row["Medical Condition"],
+                "patient.Date_of_Admission": pd.to_datetime(row["Date of Admission"]),
+                "patient.Admission_Type": row["Admission Type"],
+                "patient.Discharge_Date": pd.to_datetime(row["Discharge Date"]),
+                "patient.Room_Number": row["Room Number"],
+                "patient.Doctor": row["Doctor"],
+                "patient.Hospital": row["Hospital"],
+                "patient.Billing_Amount": row["Billing Amount"],
+                "patient.Insurance_Provider": row["Insurance Provider"],
+                "patient.Medication": row["Medication"],
+                "patient.Test_Results": row["Test Results"]
             }
             update = {"$set": conversion(row)}
             operations.append(UpdateOne(query, update, upsert=True))
