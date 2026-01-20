@@ -3,7 +3,7 @@ import pandas as pd
 
 def harmonisation(df):
     
-   df_clean = df.copy()
+    df_clean = df.copy()
     
     # 1. Normalisation des noms
     df_clean['Name'] = df_clean['Name'].str.strip().str.title()
@@ -33,6 +33,9 @@ def harmonisation(df):
     
     # 7. Normalisation du groupe sanguin (majuscules)
     df_clean['Blood Type'] = df_clean['Blood Type'].str.upper()
+
+    # 8. Suppression des doublons
+    df_clean.drop_duplicates(subset=None,keep='first', inplace=True)
 
     df_clean.to_csv('medical_data_cleaned.csv', index=False)
     return df_clean    
