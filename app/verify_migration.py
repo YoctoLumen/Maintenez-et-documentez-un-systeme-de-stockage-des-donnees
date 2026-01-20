@@ -184,8 +184,19 @@ class MigrationVerifier:
                 "$group": {
                     "_id": {
                         "name": "$patient.Name",
+                        "gender":"$patient.Gender",
+                        "blood": "$patient.Blood_Type",
+                        "age": "$patient.Age",
+                        "condition": "$patient.Medical_Condition",
                         "admission": "$patient.Date_of_Admission",
-                        "doctor": "$patient.Doctor"
+                        "discharge": "$patient.Discharge_Date",
+                        "room": "$patient.Room_Number",
+                        "doctor": "$patient.Doctor",
+                        "hospital": "$patient.Hospital",
+                        "billing": "$patient.Billing_Amount",
+                        "insurance": "$patient.Insurance_Provider",
+                        "medication": "$patient.Medication",
+                        "results": "$patient.Test_Results"
                     },
                     "count": {"$sum": 1}
                 }
@@ -301,7 +312,7 @@ class MigrationVerifier:
 def main():
     # Configuration
     mongo_uri = os.getenv('MONGO_URI', 'mongodb://user:pwuser@mongodb:27017/healthcare_db?authSource=healthcare_db')
-    csv_file = 'data.csv'
+    csv_file = 'medical_data_cleaned.csv'
     
     # Créer et exécuter le vérificateur
     verifier = MigrationVerifier(mongo_uri, csv_file)
